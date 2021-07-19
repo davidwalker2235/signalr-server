@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="container">
-        <label>Enter your name</label>
+        <label>Enter your message</label>
         <input type="text" id="message" />
         <input type="button" id="sendmessage" value="Send" />
         <ul id="discussion"></ul>
@@ -27,15 +27,20 @@
 
             var messageInput = document.getElementById('message');
 
+            var name = null;
+            var userList = [];
             // Get the user name and store it to prepend to messages.
-            var name = prompt('Enter your name:', '');
+            name = prompt('Enter your name:', '');
+            while (!name) {
+                name = prompt('You must enter a name');
+            }
             // Set initial focus to message input box.
             messageInput.focus();
 
             // Start the connection.
             var connection = new signalR.HubConnectionBuilder()
-                                .withUrl('/chat')
-                                .build();
+                .withUrl('/chat')
+                .build();
 
             // Create a function that the hub can call to broadcast messages.
             connection.on('broadcastMessage', function (name, message) {
@@ -52,19 +57,21 @@
             connection.start()
                 .then(function () {
                     console.log('connection started');
+                    connection.invoke('addUserToList', name);
                     document.getElementById('sendmessage').addEventListener('click', function (event) {
                         // Call the Send method on the hub.
                         connection.invoke('send', name, messageInput.value);
+                        
 
                         // Clear text box and reset focus for next comment.
                         messageInput.value = '';
                         messageInput.focus();
                         event.preventDefault();
                     });
-            })
-            .catch(error => {
-                console.error(error.message);
-            });
+                })
+                .catch(error => {
+                    console.error(error.message);
+                });
         });
     </script>
 </body>

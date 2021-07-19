@@ -39,6 +39,12 @@
       "frameworks": {
         "netcoreapp3.0": {
           "targetAlias": "netcoreapp3.0",
+          "dependencies": {
+            "System.Runtime": {
+              "target": "Package",
+              "version": "[4.3.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
