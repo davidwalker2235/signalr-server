@@ -4,10 +4,9 @@ using System.Linq;
 
 namespace ChatSample.Hubs
 {
-    public class ConnectionMapping<T>
+    public class ConnectionMapping
     {
-        private readonly Dictionary<T, HashSet<string>> _connections =
-    new Dictionary<T, HashSet<string>>();
+        private readonly Dictionary<string, int> _connections = new Dictionary<string, int>();
 
         public int Count
         {
@@ -17,58 +16,46 @@ namespace ChatSample.Hubs
             }
         }
 
-        public async void Add(T key, string connectionId)
+        public void Add(string key)
         {
             lock (_connections)
             {
-                HashSet<string> connections;
-                if (!_connections.TryGetValue(key, out connections))
+                int value;
+                if (!_connections.TryGetValue(key, out value))
                 {
-                    connections = new HashSet<string>();
-                    _connections.Add(key, connections);
-                }
-
-                lock (connections)
-                {
-                    connections.Add(connectionId);
+                    _connections.Add(key, 0);
                 }
             }
         }
 
-        public IEnumerable<string> GetConnections(T key)
+        public Dictionary<string, int> GetRunners()
         {
-            HashSet<string> connections;
-            if (_connections.TryGetValue(key, out connections))
-            {
-                return connections;
-            }
-
-            return Enumerable.Empty<string>();
+            return _connections;
         }
 
-        public List<T> GetNames()
-        {
-            return _connections.Select(kvp => kvp.Key).ToList();
-        }
-
-        public void Remove(T key, string connectionId)
+        public void Remove(string key, string connectionId)
         {
             lock (_connections)
             {
-                HashSet<string> connections;
-                if (!_connections.TryGetValue(key, out connections))
+                int value;
+                if (!_connections.TryGetValue(key, out value))
                 {
                     return;
                 }
 
-                lock (connections)
-                {
-                    connections.Remove(connectionId);
+                _connections.Remove(key);
+            }
+        }
 
-                    if (connections.Count == 0)
-                    {
-                        _connections.Remove(key);
-                    }
+        public void Update(string key)
+        {
+            lock (_connections)
+            {
+                int value;
+                if (_connections.TryGetValue(key, out value))
+                {
+                    int newValue = value + 1;
+                    _connections[key] = newValue;
                 }
             }
         }

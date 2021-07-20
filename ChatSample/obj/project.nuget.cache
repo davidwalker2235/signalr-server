@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "B71p26j3nC74gMkdzNTHTFQEJscUSt1/ImyJ8tzctKzld+QoQpM0Q2MZWhfPv970K+bar41DLY5Lnjl3M8vRYQ==",
+  "dgSpecHash": "JP8xxM7KJ6vb7B4wWGnhQbGIaynXNwl78XpVAfSChinBxeB9GY+8fkLgTFaWvHW5QxS6YVcJ5GGa3IiiBMgN+A==",
   "success": true,
   "projectFilePath": "C:\\SignalR\\signalr-server\\ChatSample\\ChatSample.csproj",
   "expectedPackageFiles": [

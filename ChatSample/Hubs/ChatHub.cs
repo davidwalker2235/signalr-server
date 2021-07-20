@@ -6,23 +6,23 @@ namespace ChatSample.Hubs
 {
     public class ChatHub : Hub
     {
-        private readonly static ConnectionMapping<string> _connections = new ConnectionMapping<string>();
-        public async Task Send(string name, string message)
+        private readonly static ConnectionMapping _connections = new ConnectionMapping();
+        public async Task Send(string name)
         {
-            // Call the broadcastMessage method to update clients.
-            await Clients.All.SendAsync("broadcastMessage", name, message);
+            _connections.Update(name);
+            Dictionary<string, int> userNamesList = _connections.GetRunners();
+            await Clients.All.SendAsync("broadcastUserList", userNamesList);
         }
 
-        public async Task AddUserToList(string user)
+        public void AddUserToList(string user)
         {
-            IEnumerable<string> userList = _connections.GetNames();
-                _connections.Add(user, Context.ConnectionId);
+            _connections.Add(user);
         }
 
-        public async Task SendUserList()
+        public async Task SendUserNames()
         {
-            IEnumerable<string> userList =_connections.GetConnections("David");
-            await Clients.All.SendAsync("broadcastUserList", userList);
+            Dictionary<string, int> userNamesList = _connections.GetRunners();
+            await Clients.All.SendAsync("broadcastUserList", userNamesList);
         }
     }
 }

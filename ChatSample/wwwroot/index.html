@@ -13,8 +13,6 @@
 </head>
 <body>
     <div class="container">
-        <label>Enter your message</label>
-        <input type="text" id="message" />
         <input type="button" id="sendmessage" value="Send" />
         <ul id="discussion"></ul>
     </div>
@@ -34,8 +32,6 @@
             while (!name) {
                 name = prompt('You must enter a name');
             }
-            // Set initial focus to message input box.
-            messageInput.focus();
 
             // Start the connection.
             var connection = new signalR.HubConnectionBuilder()
@@ -60,14 +56,11 @@
                     connection.invoke('addUserToList', name);
                     document.getElementById('sendmessage').addEventListener('click', function (event) {
                         // Call the Send method on the hub.
-                        connection.invoke('send', name, messageInput.value);
-                        
+                        connection.invoke('send', name);
 
-                        // Clear text box and reset focus for next comment.
-                        messageInput.value = '';
-                        messageInput.focus();
                         event.preventDefault();
                     });
+                    connection.invoke('SendUserNames');
                 })
                 .catch(error => {
                     console.error(error.message);
