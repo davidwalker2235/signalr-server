@@ -56,11 +56,11 @@
                     connection.invoke('addUserToList', name);
                     document.getElementById('sendmessage').addEventListener('click', function (event) {
                         // Call the Send method on the hub.
-                        connection.invoke('send', name);
+                        connection.invoke('sendSingleUserValue', name);
 
                         event.preventDefault();
                     });
-                    connection.invoke('SendUserNames');
+                    connection.invoke('sendUserNames');
                 })
                 .catch(error => {
                     console.error(error.message);

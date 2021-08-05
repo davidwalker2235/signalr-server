@@ -162,19 +162,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cada\\.nuget\\packages\\": {}
+    "C:\\Users\\david\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\SignalR\\signalr-server\\ChatSample\\ChatSample.csproj",
+      "projectUniqueName": "C:\\signalR\\signalr-server\\ChatSample\\ChatSample.csproj",
       "projectName": "ChatSample",
-      "projectPath": "C:\\SignalR\\signalr-server\\ChatSample\\ChatSample.csproj",
-      "packagesPath": "C:\\Users\\cada\\.nuget\\packages\\",
-      "outputPath": "C:\\SignalR\\signalr-server\\ChatSample\\obj\\",
+      "projectPath": "C:\\signalR\\signalr-server\\ChatSample\\ChatSample.csproj",
+      "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
+      "outputPath": "C:\\signalR\\signalr-server\\ChatSample\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\cada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -186,7 +190,6 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
-          "targetAlias": "netcoreapp3.0",
           "projectReferences": {}
         }
       },
@@ -198,7 +201,6 @@
     },
     "frameworks": {
       "netcoreapp3.0": {
-        "targetAlias": "netcoreapp3.0",
         "dependencies": {
           "System.Runtime": {
             "target": "Package",
@@ -241,7 +243,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
