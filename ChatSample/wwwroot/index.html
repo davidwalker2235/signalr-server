@@ -9,13 +9,18 @@
             padding: 20px;
             margin: 20px;
         }
+        .nameRoot {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <input type="button" id="sendmessage" value="Send" />
-        <ul id="discussion"></ul>
-    </div>
+    <div id="container" />
     <!--Script references. -->
     <!--Reference the SignalR library. -->
     <script type="text/javascript" src="lib/signalr.min.js"></script>
@@ -26,41 +31,66 @@
             var messageInput = document.getElementById('message');
 
             var name = null;
+            var NAME = 'name';
+            var WAITING = 'waiting';
+            var PLAYING = "playing";
+            var RESULT = "result";
             var userList = [];
-            // Get the user name and store it to prepend to messages.
-            name = prompt('Enter your name:', '');
-            while (!name) {
-                name = prompt('You must enter a name');
-            }
+            var currentStatus = NAME;
 
             // Start the connection.
             var connection = new signalR.HubConnectionBuilder()
                 .withUrl('/chat')
                 .build();
 
-            // Create a function that the hub can call to broadcast messages.
-            connection.on('broadcastMessage', function (name, message) {
-                // Html encode display name and message.
-                var encodedName = name;
-                var encodedMsg = message;
-                // Add the message to the page.
-                var liElement = document.createElement('li');
-                liElement.innerHTML = '<strong>' + encodedName + '</strong>:&nbsp;&nbsp;' + encodedMsg;
-                document.getElementById('discussion').appendChild(liElement);
+            var renderInputName = () => {
+                var inputName = document.createElement("INPUT");
+                inputName.setAttribute("type", "text");
+                inputName.setAttribute("id", "userName");
+
+                let btn = document.createElement("button");
+                btn.innerHTML = "PLAY!";
+                btn.type = "submit";
+                btn.name = "formBtn";
+                btn.id = "sendUserName";
+
+                var inputNameRoot = document.createElement('div');
+                inputNameRoot.setAttribute("class", "nameRoot");
+                inputNameRoot.appendChild(inputName);
+                inputNameRoot.appendChild(btn);
+                document.getElementById('container').appendChild(inputNameRoot);
+            }
+
+            var renderResult = () => {
+                document.getElementById('container').appendChild('<div>Holiwi</div>');
+            }
+
+            var updateName = () => {
+                let name = document.getElementById('userName').value;
+                connection.invoke('addUserToList', name);
+                connection.invoke('sendUserNames');
+            }
+
+            connection.on('finish', function (name) {
+                currentStatus = RESULT;
+                renderResult();
             });
 
             // Transport fallback functionality is now built into start.
             connection.start()
                 .then(function () {
                     console.log('connection started');
-                    connection.invoke('addUserToList', name);
-                    document.getElementById('sendmessage').addEventListener('click', function (event) {
-                        // Call the Send method on the hub.
-                        connection.invoke('sendSingleUserValue', name);
-
-                        event.preventDefault();
-                    });
-                    connection.invoke('sendUserNames');
+                    // connection.invoke('addUserToList', name);
+                    switch (currentStatus) {
+                        case NAME:
+                            renderInputName();
+                            break;
+                        default:
+                            console.log(document.getElementById('container'))
+                            document.getElementById('container').appendChild('<div>Holiwi</div>');
+                            break;
+                    }
+                    document.getElementById('sendUserName').addEventListener('click', updateName);
                 })
                 .catch(error => {
                     console.error(error.message);
