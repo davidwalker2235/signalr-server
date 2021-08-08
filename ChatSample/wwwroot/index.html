@@ -16,9 +16,31 @@
             align-items: center;
             height: 97vh;
             width: 100%;
-            background: url(../assets/gameCover.png) no-repeat center center fixed;
+            z-index: 1;
+        }
+        .coverRoot {
+            height: 104px;
+            width: 140px;
+        }
+        .coverImage {
+            background: url(gameCover.webp);
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            position: absolute;
+        }
+        .logoRoot {
+            height: 104px;
+            width: 140px;
         }
 
+        .logoImage {
+            background: url("ERNILogo.png");
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            display: block;
+        }
         .nameInput {
             width: 90%;
             height: 4%;
@@ -63,6 +85,12 @@
                 enterYourNameText.setAttribute("class", "enterYourNameText");
                 enterYourNameText.innerHTML = 'Enter Your Name';
 
+                var logoRoot = document.createElement('div');
+                logoRoot.setAttribute("class", "logoRoot");
+                var logoImage = document.createElement('img');
+                logoImage.setAttribute("class", "logoImage");
+                logoRoot.appendChild(logoImage);
+
                 let inputName = document.createElement("INPUT");
                 inputName.setAttribute("class", "nameInput");
                 inputName.setAttribute("type", "text");
@@ -75,11 +103,16 @@
                 btn.name = "formBtn";
                 btn.id = "sendUserName";
 
+                var coverImage = document.createElement('img');
+                coverImage.setAttribute("class", "coverImage");
+
                 var inputNameRoot = document.createElement('div');
                 inputNameRoot.setAttribute("class", "nameRoot");
+                inputNameRoot.appendChild(logoRoot);
                 inputNameRoot.appendChild(enterYourNameText);
                 inputNameRoot.appendChild(inputName);
                 inputNameRoot.appendChild(btn);
+                document.getElementById('container').appendChild(coverImage);
                 document.getElementById('container').appendChild(inputNameRoot);
             }
 
