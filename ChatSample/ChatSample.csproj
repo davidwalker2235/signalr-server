@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="assets\" />
+    <None Include="wwwroot\Scripts\EnterNameScreen.js" />
   </ItemGroup>
 
 </Project>
