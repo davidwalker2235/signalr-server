@@ -22,15 +22,15 @@ C:\SignalR\signalr-server\ChatSample\bin\Debug\netcoreapp3.0\ChatSample.runtimec
 C:\SignalR\signalr-server\ChatSample\bin\Debug\netcoreapp3.0\ChatSample.runtimeconfig.dev.json
 C:\SignalR\signalr-server\ChatSample\bin\Debug\netcoreapp3.0\ChatSample.dll
 C:\SignalR\signalr-server\ChatSample\bin\Debug\netcoreapp3.0\ChatSample.pdb
+C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\ChatSample.csproj.AssemblyReference.cache
 C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\ChatSample.AssemblyInfoInputs.cache
 C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\ChatSample.AssemblyInfo.cs
 C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\ChatSample.csproj.CoreCompileInputs.cache
 C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\ChatSample.MvcApplicationPartsAssemblyInfo.cache
 C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\staticwebassets\ChatSample.StaticWebAssets.Manifest.cache
 C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\staticwebassets\ChatSample.StaticWebAssets.xml
+C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\scopedcss\bundle\ChatSample.styles.css
 C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\ChatSample.RazorTargetAssemblyInfo.cache
 C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\ChatSample.dll
 C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\ChatSample.pdb
 C:\SignalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\ChatSample.genruntimeconfig.cache
-C:\signalR\signalr-server\ChatSample\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
-C:\signalR\signalr-server\ChatSample\obj\Debug\netcoreapp3.0\ChatSample.csprojAssemblyReference.cache
