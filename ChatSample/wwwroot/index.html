@@ -32,7 +32,7 @@
             });
 
             connection.on('broadcastWinner', (winner) => {
-                let userNameElement = document.getElementById('userNameDiv');
+                let userNameElement = document.getElementById('userNameDiv').innerText;
                 if (winner === userNameElement) {
                     renderWinnerScreen(winner);
                 } else {
