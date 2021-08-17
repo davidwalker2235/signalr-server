@@ -32,5 +32,15 @@ namespace ChatSample.Hubs
 
             await Clients.All.SendAsync("broadcastUser", _connections.GetUserValue(user));
         }
+
+        public async Task UpdateCounter(int timeLeft)
+        {
+            await Clients.All.SendAsync("updateCountdown", timeLeft);
+        }
+
+        public async Task SendWinner(string winner)
+        {
+            await Clients.All.SendAsync("broadcastWinner", winner);
+        }
     }
 }

@@ -8,40 +8,38 @@
 </head>
 <body>
     <div id="container" />
-    <!--Script references. -->
-    <!--Reference the SignalR library. -->
+    <div id="userNameDiv" style="display: none;"/>
     <script type="text/javascript" src="lib/signalr.min.js"></script>
     <script type="text/javascript" src="Scripts/SignalRScripts.js"></script>
     <script type="text/javascript" src="Scripts/EnterNameScreen.js"></script>
     <script type="text/javascript" src="Scripts/CountdownScreen.js"></script>
     <script type="text/javascript" src="Scripts/RunScreen.js"></script>
+    <script type="text/javascript" src="Scripts/WinnerScreen.js"></script>
+    <script type="text/javascript" src="Scripts/LoserScreen.js"></script>
     <!--Add script to update the page and send messages.-->
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
-
-            var messageInput = document.getElementById('message');
-
-            var userName = null;
-            var NAME = 'name';
-            var WAITING = 'waiting';
-            var PLAYING = "playing";
-            var RESULT = "result";
-            var userList = [];
-            var currentStatus = NAME;
+            let userName;
 
             // Start the connection.
             var connection = new signalR.HubConnectionBuilder()
                 .withUrl('/chat')
                 .build();
 
-            var renderResult = () => {
-                document.getElementById('container').appendChild('<div>Holiwi</div>');
-            }
-
-            connection.on('finish', function (name) {
-                currentStatus = RESULT;
-                renderResult();
+            connection.on('updateCountdown', (timeLeft) => {
+                var countdown = document.getElementById('countdown');
+                countdown.innerHTML = timeLeft;
             });
+
+            connection.on('broadcastWinner', (winner) => {
+                let userNameElement = document.getElementById('userNameDiv');
+                if (winner === userNameElement) {
+                    renderWinnerScreen(winner);
+                } else {
+                    renderLoserScreen();
+                }
+            });
+
 
             // Transport fallback functionality is now built into start.
             connection.start()

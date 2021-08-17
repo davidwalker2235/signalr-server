@@ -1,6 +1,4 @@
-﻿var renderRunScreen = (connection) => {
-    let userName = document.getElementById('userNameDiv').innerHTML;
-
+﻿var renderLoserScreen = () => {
     var coverImage = document.createElement('img');
     coverImage.setAttribute("class", "coverImage");
 
@@ -11,20 +9,14 @@
     logoImage.setAttribute("src", "ERNILogo.png");
     logoRoot.appendChild(logoImage);
 
-    let btn = document.createElement("button");
-    btn.className = "runButton";
-    btn.innerHTML = "RUN!";
-    btn.type = "submit";
-    btn.name = "formBtn";
-    btn.id = "runButton";
+    let loser = document.createElement('div');
+    loser.setAttribute("class", "loserText");
+    loser.innerHTML = "Sorry, you LOST :-(";
+    loser.setAttribute("id", "loser");
 
     var inputNameRoot = document.getElementById('inputNameRoot');
     inputNameRoot.innerHTML = '';
     inputNameRoot.appendChild(coverImage);
     inputNameRoot.appendChild(logoRoot);
-    inputNameRoot.appendChild(btn);
-
-    document.getElementById('runButton').addEventListener('click', () => {
-        sendSingleUserValue(event, connection, userName)
-    });
+    inputNameRoot.appendChild(loser);
 }
