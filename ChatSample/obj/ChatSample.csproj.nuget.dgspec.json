@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\SignalR\\signalr-server\\ChatSample\\ChatSample.csproj": {}
+    "C:\\signalr\\signalr-server\\ChatSample\\ChatSample.csproj": {}
   },
   "projects": {
-    "C:\\SignalR\\signalr-server\\ChatSample\\ChatSample.csproj": {
+    "C:\\signalr\\signalr-server\\ChatSample\\ChatSample.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SignalR\\signalr-server\\ChatSample\\ChatSample.csproj",
+        "projectUniqueName": "C:\\signalr\\signalr-server\\ChatSample\\ChatSample.csproj",
         "projectName": "ChatSample",
-        "projectPath": "C:\\SignalR\\signalr-server\\ChatSample\\ChatSample.csproj",
-        "packagesPath": "C:\\Users\\cada\\.nuget\\packages\\",
-        "outputPath": "C:\\SignalR\\signalr-server\\ChatSample\\obj\\",
+        "projectPath": "C:\\signalr\\signalr-server\\ChatSample\\ChatSample.csproj",
+        "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
+        "outputPath": "C:\\signalr\\signalr-server\\ChatSample\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\cada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
