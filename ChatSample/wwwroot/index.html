@@ -2,65 +2,51 @@
 <html>
 <head>
     <title>SignalR Simple Chat</title>
-    <style type="text/css">
-        .container {
-            background-color: #99CCFF;
-            border: thick solid #808080;
-            padding: 20px;
-            margin: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="Styles/EnterNameScreen.css">
+    <link rel="stylesheet" href="Styles/RunScreen.css">
+    <link rel="stylesheet" href="Styles/CountdownScreen.css">
 </head>
 <body>
-    <div class="container">
-        <input type="button" id="sendmessage" value="Send" />
-        <ul id="discussion"></ul>
-    </div>
-    <!--Script references. -->
-    <!--Reference the SignalR library. -->
+    <div id="container" />
+    <div id="userNameDiv" style="display: none;"/>
     <script type="text/javascript" src="lib/signalr.min.js"></script>
+    <script type="text/javascript" src="Scripts/SignalRScripts.js"></script>
+    <script type="text/javascript" src="Scripts/EnterNameScreen.js"></script>
+    <script type="text/javascript" src="Scripts/CountdownScreen.js"></script>
+    <script type="text/javascript" src="Scripts/RunScreen.js"></script>
+    <script type="text/javascript" src="Scripts/WinnerScreen.js"></script>
+    <script type="text/javascript" src="Scripts/LoserScreen.js"></script>
     <!--Add script to update the page and send messages.-->
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
-
-            var messageInput = document.getElementById('message');
-
-            var name = null;
-            var userList = [];
-            // Get the user name and store it to prepend to messages.
-            name = prompt('Enter your name:', '');
-            while (!name) {
-                name = prompt('You must enter a name');
-            }
+            let userName;
 
             // Start the connection.
             var connection = new signalR.HubConnectionBuilder()
                 .withUrl('/chat')
                 .build();
 
-            // Create a function that the hub can call to broadcast messages.
-            connection.on('broadcastMessage', function (name, message) {
-                // Html encode display name and message.
-                var encodedName = name;
-                var encodedMsg = message;
-                // Add the message to the page.
-                var liElement = document.createElement('li');
-                liElement.innerHTML = '<strong>' + encodedName + '</strong>:&nbsp;&nbsp;' + encodedMsg;
-                document.getElementById('discussion').appendChild(liElement);
+            connection.on('updateCountdown', (timeLeft) => {
+                var countdown = document.getElementById('countdown');
+                countdown.innerHTML = timeLeft;
             });
+
+            connection.on('broadcastWinner', (winner) => {
+                let userNameElement = document.getElementById('userNameDiv').innerText;
+                if (winner === userNameElement) {
+                    renderWinnerScreen(winner);
+                } else {
+                    renderLoserScreen();
+                }
+            });
+
 
             // Transport fallback functionality is now built into start.
             connection.start()
                 .then(function () {
                     console.log('connection started');
-                    connection.invoke('addUserToList', name);
-                    document.getElementById('sendmessage').addEventListener('click', function (event) {
-                        // Call the Send method on the hub.
-                        connection.invoke('send', name);
-
-                        event.preventDefault();
-                    });
-                    connection.invoke('SendUserNames');
+                    renderInputName();
+                    document.getElementById('sendUserName').addEventListener('click', () => updateName(connection));
                 })
                 .catch(error => {
                     console.error(error.message);

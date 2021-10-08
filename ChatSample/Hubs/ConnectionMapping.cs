@@ -59,5 +59,20 @@ namespace ChatSample.Hubs
                 }
             }
         }
+
+        public Dictionary<string, int> GetUserValue(string user)
+        {
+            Dictionary<string, int> userData = new Dictionary<string, int>();
+            int value = 0;
+            lock (_connections)
+            {
+                if (_connections.TryGetValue(user, out value))
+                {
+                    userData.Add(user, value);
+                }
+            }
+
+            return userData;
+        }
     }
 }

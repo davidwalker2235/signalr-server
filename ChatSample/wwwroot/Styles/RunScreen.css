@@ -1,0 +1,8 @@
+﻿.runButton {
+    margin-top: 30px;
+    width: 100%;
+    color: red;
+    font-size: 50px;
+    height: 80%;
+    touch-action: manipulation;
+}
