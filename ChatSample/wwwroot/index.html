@@ -45,8 +45,13 @@
             connection.start()
                 .then(function () {
                     console.log('connection started');
-                    renderInputName();
-                    document.getElementById('sendUserName').addEventListener('click', () => updateName(connection));
+                    let canRegister = connection.invoke('canRegister');
+                    if (canRegister) {
+                        renderInputName();
+                        document.getElementById('sendUserName').addEventListener('click', () => updateName(connection));
+                    } else {
+                        renderInputName();
+                    }
                 })
                 .catch(error => {
                     console.error(error.message);

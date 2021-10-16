@@ -3,7 +3,7 @@
     let userNameElement = document.getElementById('userNameDiv');
     userNameElement.innerHTML = name;
     if (name || !name.length === 0) {
-        let timeLeft = 5;
+        let timeLeft = 55;
         connection.invoke('addUserToList', name);
         connection.invoke('sendUserNames');
 
