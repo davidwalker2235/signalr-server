@@ -33,6 +33,10 @@
             connection.on('updateCountdown', (timeLeft) => {
                 var countdown = document.getElementById('countdown');
                 countdown.innerHTML = timeLeft;
+                //IMPORTANTE::::
+                //esto lo considero un workaround. creo que tendria mas sentido si esta responsabilidad perteneciese al signalrscript.js
+                //IMPORTANTE::::
+                if (timeLeft == 0) renderRunScreen(connection);
             });
 
             connection.on('broadcastWinner', (winner) => {
@@ -49,8 +53,7 @@
             connection.start()
                 .then(function () {
                     console.log('connection started');
-                    // let canRegister = connection.invoke('canRegister');
-                    let canRegister = true;
+                    let canRegister = connection.invoke('canRegister');
                     if (canRegister) {
                         renderInputName();
                         document.getElementById('sendUserName').addEventListener('click', () => updateName(connection));
