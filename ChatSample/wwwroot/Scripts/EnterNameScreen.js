@@ -26,8 +26,8 @@
     coverImage.setAttribute("class", "coverImage");
 
     var inputNameRoot = document.createElement('div');
-    inputNameRoot.setAttribute("class", "nameRoot");
-    inputNameRoot.setAttribute("id", "inputNameRoot");
+    inputNameRoot.setAttribute("class", "pageRoot");
+    inputNameRoot.setAttribute("id", "pageRoot");
     inputNameRoot.appendChild(logoRoot);
     inputNameRoot.appendChild(enterYourNameText);
     inputNameRoot.appendChild(inputName);

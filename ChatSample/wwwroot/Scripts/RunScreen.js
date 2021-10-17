@@ -18,7 +18,7 @@
     btn.name = "formBtn";
     btn.id = "runButton";
 
-    var inputNameRoot = document.getElementById('inputNameRoot');
+    var inputNameRoot = document.getElementById('pageRoot');
     inputNameRoot.innerHTML = '';
     inputNameRoot.appendChild(coverImage);
     inputNameRoot.appendChild(logoRoot);

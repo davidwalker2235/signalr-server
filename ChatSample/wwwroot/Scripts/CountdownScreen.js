@@ -14,7 +14,7 @@
     counter.innerHTML = countdown;
     counter.setAttribute("id", "countdown");
 
-    var inputNameRoot = document.getElementById('inputNameRoot');
+    var inputNameRoot = document.getElementById('pageRoot');
     inputNameRoot.innerHTML = '';
     inputNameRoot.appendChild(coverImage);
     inputNameRoot.appendChild(logoRoot);

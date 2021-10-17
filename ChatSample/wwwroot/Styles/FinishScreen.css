@@ -1,8 +1,15 @@
-﻿.runButton {
-    margin-top: 30px;
-    width: 100%;
-    color: red;
+﻿.email {
     font-size: 50px;
-    height: 80%;
-    touch-action: manipulation;
+}
+
+.winner {
+    font-size: 60px;
+}
+
+.winnerText {
+    font-size: 30px;
+}
+
+.loserText {
+    font-size: 30px;
 }

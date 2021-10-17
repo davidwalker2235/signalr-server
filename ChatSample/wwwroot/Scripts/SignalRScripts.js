@@ -3,7 +3,7 @@
     let userNameElement = document.getElementById('userNameDiv');
     userNameElement.innerHTML = name;
     if (name || !name.length === 0) {
-        let timeLeft = 55;
+        let timeLeft = 60;
         connection.invoke('addUserToList', name);
         connection.invoke('sendUserNames');
 
@@ -15,7 +15,6 @@
 var sendSingleUserValue = (event, connection, userName = "") => {
     // Call the Send method on the hub.
     connection.invoke('sendSingleUserValue', userName);
-
     event.preventDefault();
 }
 

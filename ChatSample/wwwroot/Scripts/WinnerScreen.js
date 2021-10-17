@@ -14,16 +14,23 @@
     winnerName.innerHTML = `${winner} YOU WON!!`;
     winnerName.setAttribute("id", "winner");
 
-    let email = document.createElement('div');
-    winnerName.setAttribute("class", "email");
-    winnerName.innerHTML = "email@email.com";
-    winnerName.setAttribute("id", "email");
+    let winnerText = document.createElement('div');
+    winnerText.setAttribute("class", "winnerText");
+    winnerText.innerHTML = "To claim your prize send an email to the following email address:";
+    winnerText.setAttribute("id", "winnerText");
+
+    let email = document.createElement('a');
+    email.setAttribute("class", "email");
+    email.innerHTML = "cada@erni-espana.es";
+    email.setAttribute("id", "email");
+    email.setAttribute("href", "mailto:cada@erni-espana.es");
 
 
-    var inputNameRoot = document.getElementById('inputNameRoot');
+    var inputNameRoot = document.getElementById('pageRoot');
     inputNameRoot.innerHTML = '';
     inputNameRoot.appendChild(coverImage);
     inputNameRoot.appendChild(logoRoot);
     inputNameRoot.appendChild(winnerName);
+    inputNameRoot.appendChild(winnerText);
     inputNameRoot.appendChild(email);
 }

@@ -2,13 +2,16 @@
 <html>
 <head>
     <title>SignalR Simple Chat</title>
+    <link rel="stylesheet" href="Styles/Global.css">
+    <link rel="stylesheet" href="Styles/NoAccessScreen.css">
     <link rel="stylesheet" href="Styles/EnterNameScreen.css">
     <link rel="stylesheet" href="Styles/RunScreen.css">
     <link rel="stylesheet" href="Styles/CountdownScreen.css">
+    <link rel="stylesheet" href="Styles/FinishScreen.css">
 </head>
 <body>
     <div id="container" />
-    <div id="userNameDiv" style="display: none;"/>
+    <div id="userNameDiv" style="display: none;" />
     <script type="text/javascript" src="lib/signalr.min.js"></script>
     <script type="text/javascript" src="Scripts/SignalRScripts.js"></script>
     <script type="text/javascript" src="Scripts/EnterNameScreen.js"></script>
@@ -16,6 +19,7 @@
     <script type="text/javascript" src="Scripts/RunScreen.js"></script>
     <script type="text/javascript" src="Scripts/WinnerScreen.js"></script>
     <script type="text/javascript" src="Scripts/LoserScreen.js"></script>
+    <script type="text/javascript" src="Scripts/NoAccessScreen.js"></script>
     <!--Add script to update the page and send messages.-->
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
@@ -45,12 +49,13 @@
             connection.start()
                 .then(function () {
                     console.log('connection started');
-                    let canRegister = connection.invoke('canRegister');
+                    // let canRegister = connection.invoke('canRegister');
+                    let canRegister = true;
                     if (canRegister) {
                         renderInputName();
                         document.getElementById('sendUserName').addEventListener('click', () => updateName(connection));
                     } else {
-                        renderInputName();
+                        renderNoAccessScreen();
                     }
                 })
                 .catch(error => {

@@ -14,7 +14,7 @@
     loser.innerHTML = "Sorry, you LOST :-(";
     loser.setAttribute("id", "loser");
 
-    var inputNameRoot = document.getElementById('inputNameRoot');
+    var inputNameRoot = document.getElementById('pageRoot');
     inputNameRoot.innerHTML = '';
     inputNameRoot.appendChild(coverImage);
     inputNameRoot.appendChild(logoRoot);
