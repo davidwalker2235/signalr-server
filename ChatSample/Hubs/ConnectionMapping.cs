@@ -74,5 +74,10 @@ namespace ChatSample.Hubs
 
             return userData;
         }
+
+        public void Clear()
+        {
+            _connections.Clear();
+        }
     }
 }

@@ -51,9 +51,10 @@
 
             // Transport fallback functionality is now built into start.
             connection.start()
-                .then(function () {
+                .then(async function () {
                     console.log('connection started');
-                    let canRegister = connection.invoke('canRegister');
+                    let canRegister = await connection.invoke('canRegister');
+                    debugger;
                     if (canRegister) {
                         renderInputName();
                         document.getElementById('sendUserName').addEventListener('click', () => updateName(connection));

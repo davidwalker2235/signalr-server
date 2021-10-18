@@ -8,6 +8,7 @@ namespace ChatSample.Hubs
     {
         private readonly static ConnectionMapping _connections = new ConnectionMapping();
         private static int countDown = 60;
+        private static bool isRunning = false;
         protected System.Threading.Timer tmrCountDown;
         public async Task SendNewUser(string name)
         {
@@ -24,6 +25,7 @@ namespace ChatSample.Hubs
                     tmrCountDown.Dispose();
                     tmrCountDown = null;
                     countDown = 60;
+                    
                 }
             }
 
@@ -37,7 +39,10 @@ namespace ChatSample.Hubs
                 tmrCountDown = new System.Threading.Timer((state) =>
                 {
                     countDown -= 1;
-                    if (countDown < 0) restartCountDown();
+                    if (countDown < 0) {
+                        isRunning = true;
+                        restartCountDown();
+                    }
 
                 }, null, 1000, 1000);
 
@@ -48,9 +53,9 @@ namespace ChatSample.Hubs
         {
             if (_connections.Count == 0 || _connections.Count > 0 && (tmrCountDown == null && countDown == 60)) strartCountdown();
         }
-        public async Task<bool> CanRegister()
+        public async Task<bool> canRegister()
         {
-            return countDown > 0;
+            return countDown > 0 && !isRunning;
         }
         public void AddUserToList(string user)
         {
@@ -79,8 +84,9 @@ namespace ChatSample.Hubs
 
         public async Task SendWinner(string winner)
         {
+            isRunning = false;
+            _connections.Clear();
             await Clients.All.SendAsync("broadcastWinner", winner);
-            restartCountDown();
         }
     }
 }
